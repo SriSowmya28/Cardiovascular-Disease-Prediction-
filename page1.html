@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Check</title>
+    <style>
+        body {
+            background-image: url('/static/giphy.gif'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            max-width: 600px;
+            animation: fadeIn 1s ease-in-out;
+            border: 2px solid #ddd;
+            z-index: 3; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .symbols {
+            position: absolute;
+            bottom: 40px; 
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 4em; 
+            z-index: 1; 
+
+        .symbol-left {
+            animation: slideLeft 2s infinite;
+        }
+
+        .symbol-right {
+            animation: slideRight 2s infinite;
+        }
+    }
+        @keyframes slideLeft {
+            0%, 100% { opacity: 0; transform: translateX(-50px); }
+            50% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideRight {
+            0%, 100% { opacity: 0; transform: translateX(50px); }
+            50% { opacity: 1; transform: translateX(0); }
+        }
+
+        .form-container {
+            margin-top: 100px; 
+        }
+
+        .form-container h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #09c87fd1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #FF69B4;
+            transform: scale(1.05);
+        }
+        .btn {
+        display: inline-block;
+        padding: 10px 20px; /* Adjust padding for button size */
+        font-size: 16px; /* Adjust font size */
+        text-align: center;
+        text-decoration: none;
+        background-color: #4CAF50; /* Button background color */
+        color: white; /* Button text color */
+        border: none;
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer;
+        }
+        .btn:hover {
+        background-color: #45a049; /* Darker background color on hover */
+    }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="symbols">
+            <div class="symbol-left">👉</div>
+            <div class="symbol-right">👈</div>
+        </div>
+
+        <div class="form-container">
+            <h2>Want to check how healthy your heart is?</h2>
+            <!-- <form id="heart-check-form" method="POST" action=" {{ url_for('home1') }}">
+                <input type="submit" value="Check Now">
+            </form> -->
+            <a href="{{url_for('home1')}}" class="btn">Check now</a>
+    </div>
+
+</body>
+</html>

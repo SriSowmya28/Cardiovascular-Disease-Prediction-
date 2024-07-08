@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEART DISEASE DETECTION</title>
+    <style>
+        body {
+            background-image: url('/static/human heart.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            width: 75%;
+            max-height: 80%;
+            overflow-y: auto;
+            animation: fadeIn 1.5s ease-in-out;
+            border: 2px solid #fff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #FF1493;
+            font-size: 1.5em;
+            animation: slideIn 1s ease-out;
+            margin-bottom: 20px;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+            animation: fadeIn 2s ease-in-out;
+            text-align: left;
+            width: 100%;
+        }
+
+        .form-group input[type="text"], .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 5px;
+        }
+
+        .form-group input[type="text"]:focus, .form-group input[type="number"]:focus {
+            border-color: #FF1493;
+            box-shadow: 0 0 8px rgba(255, 20, 147, 0.5);
+        }
+
+        .form-group .gender-options {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .form-group .gender-options input[type="radio"] {
+            display: none;
+        }
+
+        .form-group .gender-options label {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin: 0 5px;
+            cursor: pointer;
+            background-color:white;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 13px;
+        }
+
+        .form-group .gender-options input[type="radio"]:checked + label {
+            background-color: purple;
+            color: white;
+            box-shadow: 0 0 8px rgba(255, 20, 147, 0.5);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            color: #333;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        input[type="submit"] {
+            background-color: #FF1493;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #FF69B4;
+            transform: scale(1.05);
+        }
+
+        img {
+            margin-top: 20px;
+            width: 260px;
+            height: 150px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 1.5s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); }
+            to { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HEART DISEASE DETECTION</h1>
+        <form id="heart-disease-form" method="POST" action="{{ url_for('heart_disease_form') }}">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" placeholder="Enter age: Numeric (e.g., 52)" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <div class="gender-options">
+                    <input type="radio" id="male" name="sex" value="1" required>
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="sex" value="0" required>
+                    <label for="female">Female</label>
+                </div>
+            
+            
+            </div>
+            <div class="form-group">
+                <label for="cp">Chest Pain Type:</label>
+                <div class="gender-options">
+                    <input type="radio" id="Typical Angina" name="cp" value="0" required>
+                    <label for="Typical Angina">Typical Angina</label>
+                    <input type="radio" id="Atypical Angina" name="cp" value="1" required>
+                    <label for="Atypical Angina">Atypical Angina</label>
+                    <input type="radio" id="Non-anginal Pain" name="cp" value="2" required>
+                    <label for="Non-anginal Pain">Non-anginal Pain</label>
+                    <input type="radio" id="Asymptomatic" name="cp" value="3" required>
+                    <label for="Asymptomatic">Asymptomatic</label>
+                </div>
+                <label for="trestbps">Blood Pressure:</label>
+                <input type="number" id="trestbps" name="trestbps" placeholder="Enter blood pressure: Numeric (e.g., 125)" required>
+            </div>
+            <div class="form-group">
+                <label for="fbs">Fasting Blood Sugar:</label>
+                <div class="gender-options">
+                    <input type="radio" id=" <= 120 mg/dL" name="fbs" value="0" required>
+                    <label for=" <= 120 mg/dL"> <= 120 mg/dL</label>
+                    <input type="radio" id=" > 120 mg/dL" name="fbs" value="1" required>
+                    <label for=" > 120 mg/dL"> > 120 mg/dL</label>
+                </div>
+                <label for="chol">Cholesterol:</label>
+                <input type="number" id="chol" name="chol" placeholder=" Numeric in mg/dL (e.g., 212)" required>  
+            </div>
+            <div class="form-group">
+                <label for="restecg">ECG Results:</label>
+                <div class="gender-options">
+                    <input type="radio" id="Normal" name="restecg" value="0" required>
+                    <label for="Normal">Normal</label>
+                    <input type="radio" id="Abnormality" name="restecg" value="1" required>
+                    <label for="Abnormality">Abnormality</label>
+                    <input type="radio" id="Hypertrophy" name="restecg" value="2" required>
+                    <label for="Hypertrophy">Hypertrophy</label>
+                </div>
+                <label for="thalach">Max Heart-Rate:</label>
+                <input type="number" id="thalach" name="thalach" placeholder="Enter Max Heart-rate Received: Numeric (e.g., 168)" required>
+            </div>
+            <div class="form-group">
+                <label for="exang">Exercise-Induced Angina:</label>
+                <div class="gender-options">
+                    <input type="radio" id="No" name="exang" value="0" required>
+                    <label for="No">No</label>
+                    <input type="radio" id="Yes" name="exang" value="1" required>
+                    <label for="Yes">Yes</label>
+                </div>
+                <label for="oldpeak">Oldpeak:</label>
+                <input type="number" id="oldpeak" name="oldpeak" placeholder="Enter oldpeak: Numeric (e.g., 1.0)" required>
+            </div>
+            <div class="form-group">
+                <label for="slope">ST Segment:</label>
+                <div class="gender-options">
+                    <input type="radio" id="Upsloping" name="slope" value="0" required>
+                    <label for="Upsloping">Upsloping</label>
+                    <input type="radio" id="Flat" name="slope" value="1" required>
+                    <label for="Flat">Flat</label>
+                    <input type="radio" id="Downsloping" name="slope" value="2" required>
+                    <label for="Downsloping">Downsloping</label>
+                </div>
+                <label for="ca">Fluoro-Colored Major Vessels Count:</label>
+                <input type="number" id="ca" name="ca" placeholder="Enter fluoro-colored major vessels count: Numeric (0 to 3)" required>
+            </div>
+            <div class="form-group">
+                <label for="thal">Thalassemia:</label>
+                <div class="gender-options">
+                    <input type="radio" id="normal" name="thal" value="0" required>
+                    <label for="normal">Normal</label>
+                    <input type="radio" id="Fixed Defect" name="thal" value="1" required>
+                    <label for="Fixed Defect"> Fixed Defect</label>
+                    <input type="radio" id="Reversible Defect" name="thal" value="2" required>
+                    <label for="Reversible Defect">Reversible Defect</label>
+                </div>
+            </div>
+            <input type="hidden" name="Name" value="{{ Name }}">
+            <input type="submit" value="Predict">
+        </form>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7PEzyRlE1dCOUAPLvFILHEPSXotCrRwsgWQ&usqp=CAU" alt="Heart Disease Awareness Image">
+    </div>
+</body>
+</html>
